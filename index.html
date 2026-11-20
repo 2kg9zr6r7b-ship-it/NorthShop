@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NORTHSHOP — Заказы из Китая</title>
+
+<style>
+
+*{box-sizing:border-box}
+
+body{
+
+  margin:0;
+
+  font-family:Arial,sans-serif;
+
+  background:#f3f8f4;
+
+  color:#183525;
+
+}
+
+header{
+
+  background:#168447;
+
+  color:white;
+
+  padding:28px 20px;
+
+  border-radius:0 0 25px 25px;
+
+}
+
+header h1{margin:0;font-size:30px}
+
+header p{margin:8px 0 0;color:#e0f5e7}
+
+main{padding:20px;max-width:600px;margin:auto}
+
+h2{font-size:21px}
+
+.grid{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:13px;
+
+}
+
+.tile{
+
+  background:white;
+
+  padding:22px 12px;
+
+  border-radius:18px;
+
+  text-align:center;
+
+  font-weight:bold;
+
+  box-shadow:0 3px 12px #173d2510;
+
+  cursor:pointer;
+
+  border:1px solid #e2eee5;
+
+}
+
+.tile span{display:block;font-size:28px;margin-bottom:10px}
+
+.panel{
+
+  display:none;
+
+  background:white;
+
+  padding:20px;
+
+  margin-top:20px;
+
+  border-radius:18px;
+
+  box-shadow:0 3px 12px #173d2510;
+
+}
+
+.panel.active{display:block}
+
+input,textarea,select{
+
+  width:100%;
+
+  padding:14px;
+
+  margin:8px 0;
+
+  border:1px solid #d4e3d8;
+
+  border-radius:11px;
+
+  font-size:16px;
+
+}
+
+button{
+
+  width:100%;
+
+  padding:15px;
+
+  border:0;
+
+  border-radius:12px;
+
+  background:#168447;
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+  margin-top:10px;
+
+  cursor:pointer;
+
+}
+
+.product{
+
+  padding:14px;
+
+  border:1px solid #e2eee5;
+
+  border-radius:12px;
+
+  margin:10px 0;
+
+}
+
+footer{text-align:center;padding:25px;color:#6b8273}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <h1>NORTHSHOP</h1>
+
+  <p>Товары из Китая с удобным оформлением заказа</p>
+
+</header>
+
+<main>
+
+  <h2>Добро пожаловать!</h2>
+
+  <p>Выберите нужный раздел:</p>
+
+  <div class="grid">
+
+    <div class="tile" onclick="show('order')">
+
+      <span>📦</span>Оформить заказ
+
+    </div>
+
+    <div class="tile" onclick="show('track')">
+
+      <span>🚚</span>Отследить заказ
+
+    </div>
+
+    <div class="tile" onclick="show('catalog')">
+
+      <span>🛍️</span>Каталог
+
+    </div>
+
+    <div class="tile" onclick="show('support')">
+
+      <span>💬</span>Поддержка
+
+    </div>
+
+  </div>
+
+  <section class="panel" id="order">
+
+    <h2>Оформить заказ</h2>
+
+    <form onsubmit="sendOrder(event)">
+
+      <input id="name" placeholder="Ваше имя" required>
+
+      <input id="contact" placeholder="Telegram или телефон" required>
+
+      <input id="product" placeholder="Ссылка на товар" required>
+
+      <textarea id="comment" placeholder="Комментарий к заказу"></textarea>
+
+      <button type="submit">Отправить заявку</button>
+
+    </form>
+
+    <p id="orderResult"></p>
+
+  </section>
+
+  <section class="panel" id="track">
+
+    <h2>Отследить заказ</h2>
+
+    <input id="trackNumber" placeholder="Введите номер заказа">
+
+    <button onclick="trackOrder()">Проверить</button>
+
+    <p id="trackResult"></p>
+
+  </section>
+
+  <section class="panel" id="catalog">
+
+    <h2>Каталог</h2>
+
+    <div class="product">
+
+      <b>👕 Одежда</b>
+
+      <p>Товары из Китая</p>
+
+    </div>
+
+    <div class="product">
+
+      <b>🎒 Аксессуары</b>
+
+      <p>Разные аксессуары</p>
+
+    </div>
+
+    <div class="product">
+
+      <b>📱 Электроника</b>
+
+      <p>Гаджеты и техника</p>
+
+    </div>
+
+    <p>Каталог пока находится в разработке.</p>
+
+  </section>
+
+  <section class="panel" id="support">
+
+    <h2>Поддержка</h2>
+
+    <p>Есть вопросы? Напишите нам в Telegram.</p>
+
+    <button onclick="window.open('https://t.me/Northshop71bot','_blank')">
+
+      Открыть Telegram
+
+    </button>
+
+  </section>
+
+</main>
+
+<footer>
+
+  © 2026 NORTHSHOP
+
+</footer>
+
+<script>
+
+function show(id){
+
+  document.querySelectorAll('.panel').forEach(p=>{
+
+    p.classList.remove('active');
+
+  });
+
+  document.getElementById(id).classList.add('active');
+
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+
+}
+
+function sendOrder(event){
+
+  event.preventDefault();
+
+  document.getElementById('orderResult').textContent =
+
+    'Заявка заполнена. Отправка заказов пока не подключена.';
+
+}
+
+function trackOrder(){
+
+  const number=document.getElementById('trackNumber').value.trim();
+
+  document.getElementById('trackResult').textContent =
+
+    number ? 'Проверка статуса пока не подключена. Обратитесь в поддержку.' :
+
+    'Введите номер заказа.';
+
+}
+
+</script>
+
+</body>
+
+</html>
