@@ -8,149 +8,49 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>NORTHSHOP — Заказы из Китая</title>
+<title>NORTHSHOP</title>
 
 <style>
 
 *{box-sizing:border-box}
 
-body{
+body{margin:0;background:#f2f7f3;color:#183525;font-family:Arial,sans-serif}
 
-  margin:0;
+header{background:#138447;color:white;padding:28px 20px;border-radius:0 0 25px 25px}
 
-  font-family:Arial,sans-serif;
+header h1{font-size:32px;margin:0;letter-spacing:1px}
 
-  background:#f3f8f4;
+header p{margin:8px 0 0}
 
-  color:#183525;
-
-}
-
-header{
-
-  background:#168447;
-
-  color:white;
-
-  padding:28px 20px;
-
-  border-radius:0 0 25px 25px;
-
-}
-
-header h1{margin:0;font-size:30px}
-
-header p{margin:8px 0 0;color:#e0f5e7}
-
-main{padding:20px;max-width:600px;margin:auto}
+main{max-width:600px;margin:auto;padding:20px}
 
 h2{font-size:21px}
 
-.grid{
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
-  display:grid;
+.tile{background:white;border:1px solid #e1ebe3;border-radius:17px;padding:22px 8px;text-align:center;font-weight:bold;cursor:pointer}
 
-  grid-template-columns:1fr 1fr;
+.tile span{display:block;font-size:29px;margin-bottom:9px}
 
-  gap:13px;
-
-}
-
-.tile{
-
-  background:white;
-
-  padding:22px 12px;
-
-  border-radius:18px;
-
-  text-align:center;
-
-  font-weight:bold;
-
-  box-shadow:0 3px 12px #173d2510;
-
-  cursor:pointer;
-
-  border:1px solid #e2eee5;
-
-}
-
-.tile span{display:block;font-size:28px;margin-bottom:10px}
-
-.panel{
-
-  display:none;
-
-  background:white;
-
-  padding:20px;
-
-  margin-top:20px;
-
-  border-radius:18px;
-
-  box-shadow:0 3px 12px #173d2510;
-
-}
+.panel{display:none;background:white;padding:20px;margin-top:18px;border-radius:17px;box-shadow:0 3px 12px #173d2510}
 
 .panel.active{display:block}
 
-input,textarea,select{
+input,textarea,select{width:100%;padding:14px;margin:7px 0 14px;border:1px solid #d6e4d9;border-radius:11px;font-size:16px;background:white}
 
-  width:100%;
+label{font-size:14px;font-weight:bold}
 
-  padding:14px;
+button,.btn{display:block;width:100%;padding:15px;background:#138447;color:white;border:0;border-radius:11px;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer;margin-top:10px}
 
-  margin:8px 0;
+.price{background:#eff8f1;padding:15px;border-radius:13px;margin:12px 0}
 
-  border:1px solid #d4e3d8;
+.price strong{font-size:24px;color:#138447}
 
-  border-radius:11px;
+.small{font-size:12px;color:#718477;line-height:1.5}
 
-  font-size:16px;
-
-}
-
-button{
-
-  width:100%;
-
-  padding:15px;
-
-  border:0;
-
-  border-radius:12px;
-
-  background:#168447;
-
-  color:white;
-
-  font-size:16px;
-
-  font-weight:bold;
-
-  margin-top:10px;
-
-  cursor:pointer;
-
-}
-
-.product{
-
-  padding:14px;
-
-  border:1px solid #e2eee5;
-
-  border-radius:12px;
-
-  margin:10px 0;
-
-}
-
-footer{text-align:center;padding:25px;color:#6b8273}
+footer{text-align:center;padding:25px;color:#718477}
 
 </style>
 
@@ -160,169 +60,245 @@ footer{text-align:center;padding:25px;color:#6b8273}
 
 <header>
 
-  <h1>NORTHSHOP</h1>
+<h1>NORTHSHOP</h1>
 
-  <p>Товары из Китая с удобным оформлением заказа</p>
+<p>Товары из Китая с доставкой</p>
 
 </header>
 
 <main>
 
-  <h2>Добро пожаловать!</h2>
+<h2>Добро пожаловать!</h2>
 
-  <p>Выберите нужный раздел:</p>
+<p>Выберите нужный раздел:</p>
 
-  <div class="grid">
+<div class="grid">
 
-    <div class="tile" onclick="show('order')">
+<div class="tile" onclick="show('order')"><span>📦</span>Оформить заказ</div>
 
-      <span>📦</span>Оформить заказ
+<div class="tile" onclick="show('track')"><span>🚚</span>Отследить заказ</div>
 
-    </div>
+<div class="tile" onclick="show('catalog')"><span>🛍️</span>Каталог</div>
 
-    <div class="tile" onclick="show('track')">
+<div class="tile" onclick="show('support')"><span>💬</span>Поддержка</div>
 
-      <span>🚚</span>Отследить заказ
+<div class="tile" onclick="show('calculator')"><span>🧮</span>Калькулятор</div>
 
-    </div>
+</div>
 
-    <div class="tile" onclick="show('catalog')">
+<section class="panel" id="calculator">
 
-      <span>🛍️</span>Каталог
+<h2>Калькулятор стоимости</h2>
 
-    </div>
+<label>Цена товара в юанях (¥)</label>
 
-    <div class="tile" onclick="show('support')">
+<input type="number" id="calcPrice" min="0.01" step="0.01" placeholder="Например, 39" oninput="calculate()">
 
-      <span>💬</span>Поддержка
+<div class="price">
 
-    </div>
+Обычная доставка
 
-  </div>
+<br><strong id="normalPrice">— ₽</strong>
 
-  <section class="panel" id="order">
+</div>
 
-    <h2>Оформить заказ</h2>
+<div class="price">
 
-    <form onsubmit="sendOrder(event)">
+Экспресс-доставка
 
-      <input id="name" placeholder="Ваше имя" required>
+<br><strong id="expressPrice">— ₽</strong>
 
-      <input id="contact" placeholder="Telegram или телефон" required>
+</div>
 
-      <input id="product" placeholder="Ссылка на товар" required>
+<p class="small">Цена включает товар и доставку по тарифам NORTHSHOP.</p>
 
-      <textarea id="comment" placeholder="Комментарий к заказу"></textarea>
+<a class="btn" href="https://t.me/Gyomey9">Крупный заказ — написать менеджеру</a>
 
-      <button type="submit">Отправить заявку</button>
+</section>
 
-    </form>
+<section class="panel" id="order">
 
-    <p id="orderResult"></p>
+<h2>Оформление заказа</h2>
 
-  </section>
+<form id="orderForm" onsubmit="submitOrder(event)">
 
-  <section class="panel" id="track">
+<label>ФИО</label>
 
-    <h2>Отследить заказ</h2>
+<input id="fio" required maxlength="120" placeholder="Фамилия Имя Отчество">
 
-    <input id="trackNumber" placeholder="Введите номер заказа">
+<label>Номер телефона</label>
 
-    <button onclick="trackOrder()">Проверить</button>
+<input id="phone" required type="tel" maxlength="25" placeholder="+7...">
 
-    <p id="trackResult"></p>
+<label>Telegram username</label>
 
-  </section>
+<input id="telegram" required maxlength="40" placeholder="@username">
 
-  <section class="panel" id="catalog">
+<label>Ссылка на товар</label>
 
-    <h2>Каталог</h2>
+<input id="link" required type="url" placeholder="https://...">
 
-    <div class="product">
+<label>Цена товара в юанях (¥)</label>
 
-      <b>👕 Одежда</b>
+<input id="orderPrice" type="number" min="0.01" step="0.01" required placeholder="Например, 39" oninput="calculateOrder()">
 
-      <p>Товары из Китая</p>
+<label>Способ доставки</label>
 
-    </div>
+<select id="delivery" onchange="calculateOrder()">
 
-    <div class="product">
+<option value="normal">Обычная доставка</option>
 
-      <b>🎒 Аксессуары</b>
+<option value="express">Экспресс-доставка</option>
 
-      <p>Разные аксессуары</p>
+</select>
 
-    </div>
+<div class="price">
 
-    <div class="product">
+Итоговая стоимость
 
-      <b>📱 Электроника</b>
+<br><strong id="orderTotal">— ₽</strong>
 
-      <p>Гаджеты и техника</p>
+</div>
 
-    </div>
+<label>Комментарий к заказу</label>
 
-    <p>Каталог пока находится в разработке.</p>
+<textarea id="comment" rows="3" placeholder="Размер, цвет и пожелания"></textarea>
 
-  </section>
+<button type="submit">Отправить заявку</button>
 
-  <section class="panel" id="support">
+</form>
 
-    <h2>Поддержка</h2>
+<div id="result"></div>
 
-    <p>Есть вопросы? Напишите нам в Telegram.</p>
+<p class="small">Ваши данные будут использоваться для обработки заказа и связи с вами. Отправляя заявку, вы соглашаетесь на такую обработку.</p>
 
-    <button onclick="window.open('https://t.me/Northshop71bot','_blank')">
+</section>
 
-      Открыть Telegram
+<section class="panel" id="track">
 
-    </button>
+<h2>Отследить заказ</h2>
 
-  </section>
+<label>Номер заказа</label>
+
+<input id="trackNumber" placeholder="Введите номер заказа">
+
+<button onclick="trackOrder()">Проверить статус</button>
+
+<p id="trackResult"></p>
+
+</section>
+
+<section class="panel" id="catalog">
+
+<h2>Каталог</h2>
+
+<div class="price">👕 Одежда</div>
+
+<div class="price">🎒 Аксессуары</div>
+
+<div class="price">📱 Электроника</div>
+
+<p>Каталог товаров скоро появится.</p>
+
+</section>
+
+<section class="panel" id="support">
+
+<h2>Поддержка NORTHSHOP</h2>
+
+<p>Возникли вопросы? Напишите менеджеру.</p>
+
+<a class="btn" href="https://t.me/Gyomey9">Написать @Gyomey9</a>
+
+</section>
 
 </main>
 
-<footer>
-
-  © 2026 NORTHSHOP
-
-</footer>
+<footer>© 2026 NORTHSHOP</footer>
 
 <script>
 
 function show(id){
 
-  document.querySelectorAll('.panel').forEach(p=>{
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
 
-    p.classList.remove('active');
+document.getElementById(id).classList.add('active');
 
-  });
-
-  document.getElementById(id).classList.add('active');
-
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+document.getElementById(id).scrollIntoView({behavior:'smooth'});
 
 }
 
-function sendOrder(event){
+function normal(p){
 
-  event.preventDefault();
+return p*21;
 
-  document.getElementById('orderResult').textContent =
+}
 
-    'Заявка заполнена. Отправка заказов пока не подключена.';
+function express(p){
+
+return p*21+500;
+
+}
+
+function money(n){
+
+return n.toLocaleString('ru-RU',{maximumFractionDigits:2})+' ₽';
+
+}
+
+function calculate(){
+
+let p=Number(document.getElementById('calcPrice').value);
+
+document.getElementById('normalPrice').textContent=p>0?money(normal(p)):'— ₽';
+
+document.getElementById('expressPrice').textContent=p>0?money(express(p)):'— ₽';
+
+}
+
+function calculateOrder(){
+
+let p=Number(document.getElementById('orderPrice').value);
+
+let d=document.getElementById('delivery').value;
+
+let total=d==='normal'?normal(p):express(p);
+
+document.getElementById('orderTotal').textContent=p>0?money(total):'— ₽';
+
+}
+
+function submitOrder(e){
+
+e.preventDefault();
+
+let p=Number(document.getElementById('orderPrice').value);
+
+if(!Number.isFinite(p)||p<=0){
+
+alert('Введите правильную цену товара');
+
+return;
+
+}
+
+let d=document.getElementById('delivery').value;
+
+let total=d==='normal'?normal(p):express(p);
+
+document.getElementById('orderForm').style.display='none';
+
+document.getElementById('result').innerHTML=
+
+'<div class="price"><strong>Спасибо за заявку!</strong><p>Скоро с вами свяжутся для подтверждения заказа.</p><p>Предварительная стоимость: '+money(total)+'</p></div>';
 
 }
 
 function trackOrder(){
 
-  const number=document.getElementById('trackNumber').value.trim();
+document.getElementById('trackResult').textContent=
 
-  document.getElementById('trackResult').textContent =
-
-    number ? 'Проверка статуса пока не подключена. Обратитесь в поддержку.' :
-
-    'Введите номер заказа.';
+'Система отслеживания пока подключается. По статусу заказа напишите менеджеру.';
 
 }
 
