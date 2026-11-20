@@ -8,49 +8,237 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NORTHSHOP</title>
+<meta name="theme-color" content="#137a45">
+
+<title>NORTHSHOP — Магазин</title>
 
 <style>
 
-*{box-sizing:border-box}
+:root {
 
-body{margin:0;background:#f2f7f3;color:#183525;font-family:Arial,sans-serif}
+  --green:#137a45;
 
-header{background:#138447;color:white;padding:28px 20px;border-radius:0 0 25px 25px}
+  --dark:#105c36;
 
-header h1{font-size:32px;margin:0;letter-spacing:1px}
+  --light:#eaf7ef;
 
-header p{margin:8px 0 0}
+  --bg:#f5faf6;
 
-main{max-width:600px;margin:auto;padding:20px}
+  --text:#183326;
 
-h2{font-size:21px}
+  --muted:#718078;
 
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+}
 
-.tile{background:white;border:1px solid #e1ebe3;border-radius:17px;padding:22px 8px;text-align:center;font-weight:bold;cursor:pointer}
+* {box-sizing:border-box}
 
-.tile span{display:block;font-size:29px;margin-bottom:9px}
+body {
 
-.panel{display:none;background:white;padding:20px;margin-top:18px;border-radius:17px;box-shadow:0 3px 12px #173d2510}
+  margin:0;
 
-.panel.active{display:block}
+  font-family:Arial,sans-serif;
 
-input,textarea,select{width:100%;padding:14px;margin:7px 0 14px;border:1px solid #d6e4d9;border-radius:11px;font-size:16px;background:white}
+  background:var(--bg);
 
-label{font-size:14px;font-weight:bold}
+  color:var(--text);
 
-button,.btn{display:block;width:100%;padding:15px;background:#138447;color:white;border:0;border-radius:11px;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer;margin-top:10px}
+}
 
-.price{background:#eff8f1;padding:15px;border-radius:13px;margin:12px 0}
+header {
 
-.price strong{font-size:24px;color:#138447}
+  background:var(--green);
 
-.small{font-size:12px;color:#718477;line-height:1.5}
+  color:white;
 
-footer{text-align:center;padding:25px;color:#718477}
+  padding:25px 20px;
+
+  border-radius:0 0 24px 24px;
+
+}
+
+.header-inner,main {
+
+  max-width:650px;
+
+  margin:auto;
+
+}
+
+.logo {
+
+  font-size:27px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+}
+
+header p {margin:8px 0 0;color:#e1f5e8}
+
+main {padding:18px 15px 40px}
+
+.card {
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:18px;
+
+  margin-bottom:16px;
+
+  box-shadow:0 3px 14px #173c2510;
+
+}
+
+h2 {font-size:20px;margin:0 0 15px}
+
+h3 {margin:0 0 8px}
+
+.muted {color:var(--muted);font-size:14px;line-height:1.5}
+
+.price-grid {
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:10px;
+
+  margin-top:15px;
+
+}
+
+.price-box {
+
+  background:var(--light);
+
+  padding:14px;
+
+  border-radius:13px;
+
+}
+
+.price-box strong {
+
+  display:block;
+
+  font-size:20px;
+
+  color:var(--green);
+
+  margin-top:7px;
+
+}
+
+input,textarea,select {
+
+  width:100%;
+
+  padding:14px;
+
+  border:1px solid #dce9df;
+
+  border-radius:11px;
+
+  margin:7px 0 14px;
+
+  font-size:16px;
+
+  background:white;
+
+  color:var(--text);
+
+}
+
+textarea {min-height:85px;resize:vertical}
+
+label {font-size:14px;font-weight:700}
+
+button,.button {
+
+  display:block;
+
+  width:100%;
+
+  border:0;
+
+  border-radius:12px;
+
+  padding:15px;
+
+  background:var(--green);
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  text-align:center;
+
+  text-decoration:none;
+
+  cursor:pointer;
+
+}
+
+button:disabled {opacity:.6;cursor:wait}
+
+.secondary {
+
+  background:var(--light);
+
+  color:var(--green);
+
+}
+
+.product {
+
+  padding:15px;
+
+  border:1px solid #e5eee7;
+
+  border-radius:13px;
+
+  margin:10px 0;
+
+}
+
+.product p {margin:5px 0;color:var(--muted);font-size:14px}
+
+.notice {
+
+  padding:13px;
+
+  border-radius:12px;
+
+  background:var(--light);
+
+  color:var(--dark);
+
+  font-size:14px;
+
+  line-height:1.5;
+
+}
+
+#result {display:none;margin-top:14px}
+
+footer {
+
+  text-align:center;
+
+  padding:15px;
+
+  color:var(--muted);
+
+  font-size:13px;
+
+}
 
 </style>
 
@@ -60,247 +248,397 @@ footer{text-align:center;padding:25px;color:#718477}
 
 <header>
 
-<h1>NORTHSHOP</h1>
+  <div class="header-inner">
 
-<p>Товары из Китая с доставкой</p>
+    <div class="logo">NORTHSHOP</div>
+
+    <p>Твой магазин покупок из Китая</p>
+
+  </div>
 
 </header>
 
 <main>
 
-<h2>Добро пожаловать!</h2>
+<section class="card">
 
-<p>Выберите нужный раздел:</p>
+  <h2>Добро пожаловать!</h2>
 
-<div class="grid">
+  <p class="muted">
 
-<div class="tile" onclick="show('order')"><span>📦</span>Оформить заказ</div>
+    Оформляй заказ, рассчитывай стоимость доставки
 
-<div class="tile" onclick="show('track')"><span>🚚</span>Отследить заказ</div>
+    и следи за обновлениями магазина.
 
-<div class="tile" onclick="show('catalog')"><span>🛍️</span>Каталог</div>
+  </p>
 
-<div class="tile" onclick="show('support')"><span>💬</span>Поддержка</div>
-
-<div class="tile" onclick="show('calculator')"><span>🧮</span>Калькулятор</div>
-
-</div>
-
-<section class="panel" id="calculator">
-
-<h2>Калькулятор стоимости</h2>
-
-<label>Цена товара в юанях (¥)</label>
-
-<input type="number" id="calcPrice" min="0.01" step="0.01" placeholder="Например, 39" oninput="calculate()">
-
-<div class="price">
-
-Обычная доставка
-
-<br><strong id="normalPrice">— ₽</strong>
-
-</div>
-
-<div class="price">
-
-Экспресс-доставка
-
-<br><strong id="expressPrice">— ₽</strong>
-
-</div>
-
-<p class="small">Цена включает товар и доставку по тарифам NORTHSHOP.</p>
-
-<a class="btn" href="https://t.me/Gyomey9">Крупный заказ — написать менеджеру</a>
+  <a class="button" href="#order">Оформить заказ</a>
 
 </section>
 
-<section class="panel" id="order">
+<section class="card">
 
-<h2>Оформление заказа</h2>
+  <h2>Каталог</h2>
 
-<form id="orderForm" onsubmit="submitOrder(event)">
+  <div class="product">
 
-<label>ФИО</label>
+    <h3>Одежда</h3>
 
-<input id="fio" required maxlength="120" placeholder="Фамилия Имя Отчество">
+    <p>Вещи и аксессуары из Китая</p>
 
-<label>Номер телефона</label>
+  </div>
 
-<input id="phone" required type="tel" maxlength="25" placeholder="+7...">
+  <div class="product">
 
-<label>Telegram username</label>
+    <h3>Обувь</h3>
 
-<input id="telegram" required maxlength="40" placeholder="@username">
+    <p>Обувь на каждый день</p>
 
-<label>Ссылка на товар</label>
+  </div>
 
-<input id="link" required type="url" placeholder="https://...">
+  <div class="product">
 
-<label>Цена товара в юанях (¥)</label>
+    <h3>Аксессуары</h3>
 
-<input id="orderPrice" type="number" min="0.01" step="0.01" required placeholder="Например, 39" oninput="calculateOrder()">
+    <p>Различные товары и дополнения</p>
 
-<label>Способ доставки</label>
+  </div>
 
-<select id="delivery" onchange="calculateOrder()">
+  <div class="product">
 
-<option value="normal">Обычная доставка</option>
+    <h3>Другие товары</h3>
 
-<option value="express">Экспресс-доставка</option>
+    <p>Можно заказать товар по ссылке</p>
 
-</select>
-
-<div class="price">
-
-Итоговая стоимость
-
-<br><strong id="orderTotal">— ₽</strong>
-
-</div>
-
-<label>Комментарий к заказу</label>
-
-<textarea id="comment" rows="3" placeholder="Размер, цвет и пожелания"></textarea>
-
-<button type="submit">Отправить заявку</button>
-
-</form>
-
-<div id="result"></div>
-
-<p class="small">Ваши данные будут использоваться для обработки заказа и связи с вами. Отправляя заявку, вы соглашаетесь на такую обработку.</p>
+  </div>
 
 </section>
 
-<section class="panel" id="track">
+<section class="card">
 
-<h2>Отследить заказ</h2>
+  <h2>Калькулятор доставки</h2>
 
-<label>Номер заказа</label>
+  <label for="yuan">Цена товара в юанях (¥)</label>
 
-<input id="trackNumber" placeholder="Введите номер заказа">
+  <input id="yuan" type="number" min="0" step="0.01"
 
-<button onclick="trackOrder()">Проверить статус</button>
+         placeholder="Например, 100">
 
-<p id="trackResult"></p>
+  <div class="price-grid">
+
+    <div class="price-box">
+
+      <span class="muted">Обычная доставка</span>
+
+      <strong id="regular">0 ₽</strong>
+
+    </div>
+
+    <div class="price-box">
+
+      <span class="muted">Экспресс-доставка</span>
+
+      <strong id="express">0 ₽</strong>
+
+    </div>
+
+  </div>
+
+  <p class="muted">Расчёт: цена в ¥ × 21 ₽. Экспресс — дополнительно 500 ₽.</p>
+
+</section>
+
+<section class="card" id="order">
+
+  <h2>Оформить заказ</h2>
+
+  <p class="muted">Заполни данные, чтобы отправить заявку.</p>
+
+  <form id="orderForm">
+
+    <label for="fullName">ФИО *</label>
+
+    <input id="fullName" maxlength="120" required
+
+           placeholder="Имя и фамилия">
+
+    <label for="phone">Телефон *</label>
+
+    <input id="phone" type="tel" maxlength="40" required
+
+           placeholder="+7...">
+
+    <label for="telegram">Telegram username</label>
+
+    <input id="telegram" maxlength="50"
+
+           placeholder="@username">
+
+    <label for="productUrl">Ссылка на товар *</label>
+
+    <input id="productUrl" type="url" maxlength="2000"
+
+           required placeholder="https://...">
+
+    <label for="orderPrice">Цена товара в юанях *</label>
+
+    <input id="orderPrice" type="number" min="0.01"
+
+           max="10000000" step="0.01" required
+
+           placeholder="Например, 100">
+
+    <label for="delivery">Способ доставки *</label>
+
+    <select id="delivery" required>
+
+      <option value="обычная">Обычная доставка</option>
+
+      <option value="экспресс">Экспресс-доставка</option>
+
+    </select>
+
+    <label for="comment">Комментарий</label>
+
+    <textarea id="comment" maxlength="1000"
+
+              placeholder="Дополнительная информация"></textarea>
+
+    <div class="notice">
+
+      Перед отправкой проверь данные заказа.
+
+      Не указывай лишнюю личную информацию.
+
+    </div>
+
+    <br>
+
+    <button id="submitButton" type="submit">
+
+      Отправить заявку
+
+    </button>
+
+  </form>
+
+  <div id="result" class="notice" role="status"></div>
 
 </section>
 
-<section class="panel" id="catalog">
+<section class="card">
 
-<h2>Каталог</h2>
+  <h2>Поддержка</h2>
 
-<div class="price">👕 Одежда</div>
+  <p class="muted">Есть вопросы? Напиши менеджеру.</p>
 
-<div class="price">🎒 Аксессуары</div>
+  <a class="button secondary"
 
-<div class="price">📱 Электроника</div>
+     href="https://t.me/Gyomey9"
 
-<p>Каталог товаров скоро появится.</p>
+     target="_blank" rel="noopener">
+
+    Написать менеджеру
+
+  </a>
+
+</section>
+
+<section class="card">
+
+  <h2>Отслеживание заказа</h2>
+
+  <p class="muted">
+
+    Раздел отслеживания пока находится в разработке.
+
+    Статусы заказов ещё не подключены.
+
+  </p>
 
 </section>
 
-<section class="panel" id="support">
+<footer>
 
-<h2>Поддержка NORTHSHOP</h2>
+  NORTHSHOP © 2026
 
-<p>Возникли вопросы? Напишите менеджеру.</p>
-
-<a class="btn" href="https://t.me/Gyomey9">Написать @Gyomey9</a>
-
-</section>
+</footer>
 
 </main>
 
-<footer>© 2026 NORTHSHOP</footer>
-
 <script>
 
-function show(id){
+const SUPABASE_URL = "https://vhbfnqtltnlmuggeirth.supabase.co";
 
-document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+const SUPABASE_KEY = "sb_publishable_LhzFJa3hQJcFhIB22K-6UQ_73snnKJx";
 
-document.getElementById(id).classList.add('active');
+const yuanInput = document.getElementById("yuan");
 
-document.getElementById(id).scrollIntoView({behavior:'smooth'});
+const regularOutput = document.getElementById("regular");
 
-}
+const expressOutput = document.getElementById("express");
 
-function normal(p){
+const orderPrice = document.getElementById("orderPrice");
 
-return p*21;
+function calculate() {
 
-}
+  const price = Number(yuanInput.value);
 
-function express(p){
+  const valid = Number.isFinite(price) && price > 0;
 
-return p*21+500;
+  regularOutput.textContent =
 
-}
+    valid ? (price * 21).toLocaleString("ru-RU") + " ₽" : "0 ₽";
 
-function money(n){
+  expressOutput.textContent =
 
-return n.toLocaleString('ru-RU',{maximumFractionDigits:2})+' ₽';
-
-}
-
-function calculate(){
-
-let p=Number(document.getElementById('calcPrice').value);
-
-document.getElementById('normalPrice').textContent=p>0?money(normal(p)):'— ₽';
-
-document.getElementById('expressPrice').textContent=p>0?money(express(p)):'— ₽';
+    valid ? (price * 21 + 500).toLocaleString("ru-RU") + " ₽" : "0 ₽";
 
 }
 
-function calculateOrder(){
+yuanInput.addEventListener("input", calculate);
 
-let p=Number(document.getElementById('orderPrice').value);
+orderPrice.addEventListener("input", () => {
 
-let d=document.getElementById('delivery').value;
+  yuanInput.value = orderPrice.value;
 
-let total=d==='normal'?normal(p):express(p);
+  calculate();
 
-document.getElementById('orderTotal').textContent=p>0?money(total):'— ₽';
+});
 
-}
+const form = document.getElementById("orderForm");
 
-function submitOrder(e){
+const button = document.getElementById("submitButton");
 
-e.preventDefault();
+const result = document.getElementById("result");
 
-let p=Number(document.getElementById('orderPrice').value);
+form.addEventListener("submit", async (event) => {
 
-if(!Number.isFinite(p)||p<=0){
+  event.preventDefault();
 
-alert('Введите правильную цену товара');
+  const price = Number(orderPrice.value);
 
-return;
+  if (!Number.isFinite(price) || price <= 0 || price > 10000000) {
 
-}
+    result.style.display = "block";
 
-let d=document.getElementById('delivery').value;
+    result.textContent = "Проверь цену товара.";
 
-let total=d==='normal'?normal(p):express(p);
+    return;
 
-document.getElementById('orderForm').style.display='none';
+  }
 
-document.getElementById('result').innerHTML=
+  const productUrl = document.getElementById("productUrl").value.trim();
 
-'<div class="price"><strong>Спасибо за заявку!</strong><p>Скоро с вами свяжутся для подтверждения заказа.</p><p>Предварительная стоимость: '+money(total)+'</p></div>';
+  try {
 
-}
+    const parsed = new URL(productUrl);
 
-function trackOrder(){
+    if (!["https:", "http:"].includes(parsed.protocol)) {
 
-document.getElementById('trackResult').textContent=
+      throw new Error("Invalid URL");
 
-'Система отслеживания пока подключается. По статусу заказа напишите менеджеру.';
+    }
 
-}
+  } catch {
+
+    result.style.display = "block";
+
+    result.textContent = "Проверь ссылку на товар.";
+
+    return;
+
+  }
+
+  const payload = {
+
+    full_name: document.getElementById("fullName").value.trim(),
+
+    phone: document.getElementById("phone").value.trim(),
+
+    telegram_username: document.getElementById("telegram").value.trim(),
+
+    product_url: productUrl,
+
+    price_yuan: price,
+
+    delivery_type: document.getElementById("delivery").value,
+
+    comment: document.getElementById("comment").value.trim()
+
+  };
+
+  button.disabled = true;
+
+  button.textContent = "Отправляем...";
+
+  result.style.display = "block";
+
+  result.textContent = "Отправляем заявку...";
+
+  try {
+
+    const response = await fetch(
+
+      SUPABASE_URL + "/functions/v1/create-order",
+
+      {
+
+        method: "POST",
+
+        headers: {
+
+          "Content-Type": "application/json",
+
+          "apikey": SUPABASE_KEY
+
+        },
+
+        body: JSON.stringify(payload)
+
+      }
+
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+
+      throw new Error(data.error || "Не удалось отправить заявку");
+
+    }
+
+    result.textContent =
+
+      "Спасибо за заявку! Номер заказа: " +
+
+      data.order_number +
+
+      ". Скоро с вами свяжутся.";
+
+    form.reset();
+
+    yuanInput.value = "";
+
+    calculate();
+
+  } catch (error) {
+
+    result.textContent =
+
+      "Не удалось отправить заявку. " +
+
+      "Попробуй позже или напиши менеджеру @Gyomey9.";
+
+  } finally {
+
+    button.disabled = false;
+
+    button.textContent = "Отправить заявку";
+
+  }
+
+});
 
 </script>
 
